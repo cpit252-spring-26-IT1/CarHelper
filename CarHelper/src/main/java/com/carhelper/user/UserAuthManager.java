@@ -17,4 +17,4 @@ public class UserAuthManager {
         System.out.println("Login user: " + email);
         return true;
     }
-} 
+}
