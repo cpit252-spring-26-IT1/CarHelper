@@ -5,19 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class CarFactory {
 
-    public Car getCar(String brand) {
-
-        if (brand == null) return null;
-
-        if (brand.equalsIgnoreCase("toyota"))
+    public static Car createCar(String brand) {
+        if (brand == null) {
+            throw new IllegalArgumentException("Brand cannot be null");
+        }
+        if (brand.equalsIgnoreCase("Toyota")) {
             return new ToyotaCar();
-
-        if (brand.equalsIgnoreCase("hyundai"))
+        } else if (brand.equalsIgnoreCase("Hyundai")) {
             return new HyundaiCar();
-
-        if (brand.equalsIgnoreCase("kia"))
+        } else if (brand.equalsIgnoreCase("Kia")) {
             return new KiaCar();
-
-        return null;
+        } else {
+            throw new IllegalArgumentException("Unknown brand: " + brand + ". Supported: Toyota, Hyundai, Kia");
+        }
     }
 }
