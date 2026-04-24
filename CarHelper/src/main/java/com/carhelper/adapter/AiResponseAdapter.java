@@ -1,4 +1,6 @@
 package com.carhelper.adapter;
+import com.carhelper.model.DiagnosticReport;
 
-public class AiResponseAdapter {
+public interface AiResponseAdapter {
+    DiagnosticReport translateResponse(String rawAiJson);
 }
