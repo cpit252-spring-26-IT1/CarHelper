@@ -1,4 +1,4 @@
-package com.carhelper.user;
+package com.carhelper.model;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.carhelper.user;
+package com.carhelper.config;
 
 public class UserAuthManager {
 
