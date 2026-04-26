@@ -23,14 +23,18 @@ public class GeminiApiAdapter implements AiResponseAdapter {
                     .path("text")
                     .asText();
 
-            double parsedCost = 850.00;
-            String disclaimer = "Note: This is an AI-generated report and may not be 100% accurate. Please consult a certified mechanic.";
-
-            return new DiagnosticReport(aiGeneratedText, parsedCost, disclaimer);
+            return new DiagnosticReport(
+                    aiGeneratedText,
+                    250.0,
+                    "AI-generated report. Professional inspection is recommended."
+            );
 
         } catch (Exception e) {
-            System.err.println("Failed to parse Gemini JSON: " + e.getMessage());
-            return new DiagnosticReport("Failed to understand AI response.", 0.0, "Error");
+            return new DiagnosticReport(
+                    "Failed to understand AI response.",
+                    0.0,
+                    "System error"
+            );
         }
     }
 }
