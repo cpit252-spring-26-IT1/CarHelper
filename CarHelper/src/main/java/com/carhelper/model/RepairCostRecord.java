@@ -97,3 +97,4 @@ public class RepairCostRecord {
         this.createdAt = createdAt;
     }
 }
+
