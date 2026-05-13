@@ -6,7 +6,30 @@
 
 body {
   font-family: 'Cairo', sans-serif;
-  direction: rtl;
   margin: 0;
   background-color: #f8fafc;
+}
+
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="ltr"] input,
+html[dir="ltr"] textarea,
+html[dir="ltr"] select {
+  direction: ltr;
+  text-align: left;
 }

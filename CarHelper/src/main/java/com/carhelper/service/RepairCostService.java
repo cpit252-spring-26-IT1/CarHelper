@@ -64,9 +64,12 @@ public class RepairCostService {
                 + "Problem description: " + safe(problemDescription) + ". "
                 + "Write the full report only in " + reportLanguage + ". "
                 + "Do not mix languages. "
-                + "Return a simple report with possible issue, expected repair work, estimated cost range in Saudi Riyal, advice, and AI disclaimer. "
-                + "Use simple student-level language. "
-                + "Do not use markdown code block. "
+                + "Write plain text only. "
+                + "Never use markdown formatting. "
+                + "Never use stars or asterisks. "
+                + "Never use bullet points. "
+                + "but use normal titles and use normal paragraphs only. "
+                + "Include possible issue, expected repair work, estimated cost range in Saudi Riyal, advice, and AI disclaimer. "
                 + "Do not say fixed prices from code.";
     }
 
