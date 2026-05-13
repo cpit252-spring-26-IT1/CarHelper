@@ -1,8 +1,9 @@
 package com.carhelper.controller;
 
-import com.carhelper.adapter.AiResponseAdapter;
+import com.carhelper.adapter.ApiAdapter;
+import com.carhelper.ai.ImageAiService;
 import com.carhelper.model.DiagnosticReport;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,30 +12,21 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/diagnosis")
 public class ImageDiagnosisController {
 
-    @Autowired
-    private AiResponseAdapter adapter;
+    private final ImageAiService imageAiService;
+    private final ApiAdapter apiAdapter;
+
+    public ImageDiagnosisController(ImageAiService imageAiService, ApiAdapter apiAdapter) {
+        this.imageAiService = imageAiService;
+        this.apiAdapter = apiAdapter;
+    }
 
     @PostMapping("/image")
-    public DiagnosticReport analyzeImage(
-            @RequestParam("file") MultipartFile file
+    public ResponseEntity<DiagnosticReport> analyzeImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "language", required = false) String language
     ) {
-
-        String fakeGeminiResponse = """
-        {
-          "candidates": [
-            {
-              "content": {
-                "parts": [
-                  {
-                    "text": "The image shows bumper scratches and minor paint damage."
-                  }
-                ]
-              }
-            }
-          ]
-        }
-        """;
-
-        return adapter.translateResponse(fakeGeminiResponse);
+        String rawResult = imageAiService.analyzeImage(file, language);
+        DiagnosticReport report = apiAdapter.translateResponse(rawResult);
+        return ResponseEntity.ok(report);
     }
 }
